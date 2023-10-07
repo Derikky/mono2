@@ -1,0 +1,265 @@
+body{
+  /* Layout Properties */
+  top: 0px;
+  left: 0px;
+  width: 430px;
+  height: 3000px;
+  /* UI Properties */
+  background:  #E5E5E5 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+
+.title {
+/* UI Properties */
+text-align:center;
+padding:20px 0;
+font: normal normal normal 20px/24px HGPSoeiKakugothicUB;
+letter-spacing: 0.4px;
+color: #000000;
+opacity: 0.45;
+}
+
+header {
+  top: 0px;
+  left: 0px;
+  width: 440px;
+  height: 70px;
+  position: fixed;
+  background: #A8EDCB 0% 0% no-repeat padding-box;
+  opacity: 1;
+  z-index: 1000; 
+}
+img {
+ width: 36.18px;
+ height: 36px;
+}
+
+/* ハンバーガーアイコンのスタイル */
+.menu-toggle {
+  cursor: pointer;
+  position: absolute; /* 絶対位置指定 */
+  /* Layout Properties */
+  top: 22px;
+  left: 19px;
+  width: 22px;
+  height: 16px;
+  /* UI Properties */
+  opacity: 1;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+/* メニューの初期状態 */
+.menu {
+  display: none;
+}
+
+/* メニューのスタイル */
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu li {
+  padding: 10px 0;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+/* メニューを表示するクラス */
+.menu-open {
+  /* UI Properties */
+  background: #E5E5E5 0% 0% no-repeat padding-box;
+  opacity: 1;
+  display: inline-block;
+  width: 450px;
+  height: 928px;
+  vertical-align: middle;
+}
+
+/* リストアイテムのスタイル */
+li {
+  list-style: none; /* リストのマーカーを非表示にする */
+  margin: 0; /* マージンをリセット */
+  padding: 10px;
+  text-align: center; 
+}
+
+/* アンカータグのスタイル */
+li a {
+  text-decoration: none; /* リンクの下線を非表示にする */
+  text-align: center;
+  font: normal normal normal 20px/24px HGPSoeiKakugothicUB;
+  letter-spacing: 0.4px;
+  color: #000000;
+  opacity: 0.7;
+  }
+
+/* ホバー時のスタイル */
+li a:hover {
+  color: #84D3AC; /* ホバー時のテキスト色を指定 */
+}
+
+
+.container {
+  margin-top: 80px; 
+  width: 420px;
+  height: 94px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 13px;
+  opacity: 1;
+}
+
+.goodsname {
+  position: absolute;
+  top: 94px;
+  left: 108px;
+  width: 45px;
+  height: 15px;
+  /* UI Properties */
+  text-align: center;
+  font: normal normal normal 15px/18px HGPSoeiKakugothicUB;
+  letter-spacing: 0px;
+  color: #707070;
+  opacity: 1;
+}
+
+.syoukeimoji{
+  position: absolute;
+  top: 94px;
+  left: 355px;
+  width: 30px;
+  height: 15px;
+  /* UI Properties */
+  text-align: center;
+  font: normal normal normal 15px/18px HGPSoeiKakugothicUB;
+  letter-spacing: 0px;
+  color: #707070;
+  opacity: 1;
+}
+
+.item1{
+  /* Layout Properties */
+  position: absolute;
+  top: 115px; /* 上方向に20px移動 */
+  left: 19px;
+  width: 216px;
+  height: 43px;
+  /* UI Properties */
+  background: #E5E5E5 0% 0% no-repeat padding-box;
+  border-radius: 9px;
+  opacity: 1;
+  font-size: 30px;
+}
+
+.item2{
+  /* Layout Properties */
+  position: absolute;
+  top: 90px; 
+  left: 250px;
+  width: 64px;
+  height: 28px;
+  /* UI Properties */
+  background: #E5E5E5 0% 0% no-repeat padding-box;
+  border-radius: 9px;
+  opacity: 1;
+  font-size: 15px;
+}
+
+.item3{
+  /* Layout Properties */
+  position: absolute;
+  top: 130px; 
+  left: 250px;
+  width: 64px;
+  height: 28px;
+  /* UI Properties */
+  background: #E5E5E5 0% 0% no-repeat padding-box;
+  border-radius: 9px;
+  opacity: 1;
+  font-size: 15px;
+}
+
+.item4{
+  /* Layout Properties */
+  position: absolute;
+  top: 116px;
+  left: 328px;
+  width: 81px;
+  height: 43px;
+  /* UI Properties */
+  background: #E5E5E5 0% 0% no-repeat padding-box;
+  border-radius: 9px;
+  opacity: 1;
+  font-size: 30px;
+}
+
+.form-container {
+  margin-top: 100px;
+  margin-left: -300px; 
+}
+
+.input-with-unit2 {
+  align-items: center; /* 垂直方向の中央揃え */
+}
+.unit2 {
+  position: absolute;
+  font: normal normal normal 12px/14px HGPSoeiKakugothicUB;
+  letter-spacing: 0px;
+  color: #707070;
+  opacity: 0.7;
+  margin-top: 20px;
+  margin-left: 292px; /* テキストボックスと単位の間隔を調整 */
+}
+
+.input-with-unit3 {
+  align-items: center; /* 垂直方向の中央揃え */
+}
+.unit3 {
+  position: absolute;
+  font: normal normal normal 12px/14px HGPSoeiKakugothicUB;
+  letter-spacing: 0px;
+  color: #707070;
+  opacity: 0.7;
+  margin-top: 62px;
+  margin-left: 292px; /* テキストボックスと単位の間隔を調整 */
+}
+
+.input-with-unit4 {
+  align-items: center; /* 垂直方向の中央揃え */
+}
+.unit4 {
+  position: absolute;
+  text-align: center;
+  font: normal normal normal 15px/18px HGPSoeiKakugothicUB;
+  letter-spacing: 0px;
+  color: #707070;
+  opacity: 1;
+  margin-top: 60px;
+  margin-left: 385px; /* テキストボックスと単位の間隔を調整 */
+}
+
+footer {
+  position: absolute;
+  /* Layout Properties */
+  top: 830px;
+  left: 0px;
+  width: 440px;
+  height: 70px;
+  /* UI Properties */
+  background: #A8EDCB 0% 0% no-repeat padding-box;
+  opacity: 1;
+  position: fixed;
+  z-index: 1000; 
+}
