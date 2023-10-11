@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+    {% load static %} 
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>お買い物</title>
+</head>
+
+<body>
+    <!-- ... (header部分のコード) ... -->
+    <header>
+        <div class="title">お買い物の金見さん</div>
+        <div style="position:absolute; top:12px; left:382px" >
+        <img class="img_icon" src="{% static 'images/usericon.png' %}" alt="アイコン">
+        </div>
+
+        <div class="menu-toggle" id="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <nav class="menu" id="menu">
+            <ul>
+                <li><a  href="">履歴</a></li>
+                <li><a  href="zei.html">税率変更</a></li>
+                <li><a  href="memo.html">メモ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+    </main>
+    
+    <div class="container">
+           <div class="goodsname">
+               商品名
+           </div>
+           <div class="syoukeimoji">
+               小計
+           </div>
+           <form method="POST" class="forms" id="product-form">
+               {% csrf_token %}
+               <div id="product-list">
+                   <!-- 商品入力フォームの最初のセット -->
+                   <div class="product-entry">
+                       <input type="text" name="name" class="item1">
+                       <div class="input-with-unit2">
+                           <input type="number" name="quantity" class="item2">
+                           <span class="unit2">個</span>
+                       </div>
+                       <div class="input-with-unit3">
+                           <input type="number" name="price" class="item3">
+                           <span class="unit3">円</span>
+                       </div>
+                       <div class="input-with-unit4">
+                        <p class="item4"><span class="product-total" id="product-total">0</span></p>
+                    </div>
+                    <div class="input-with-unit5">
+                        <img class="waribiki" src="{% static 'images/waribiki.png' %}" alt="割引" id="price_off">
+                    </div>
+                       <button type="button" class="remove-product">－</button>
+                   </div>
+               </div>
+            </form>
+        </div>
+           <!--カート画像-->
+           <img class="goukeicount" src="{% static 'images/goukeicount.png' %}" alt="カート画像" id="goukeicount">
+            <!--追加ボタン-->
+           <img class="add-product" src="{% static 'images/add_botan.png' %}" alt="ボタン画像" id="add-product">
+           <!--合計表示-->
+           <div class="total">
+               <span class="grand-total" id="grand-total">0</span>
+                <img class="img_goukei" src="{% static 'images/goukei_moji.png' %}" alt="合計">
+                <img class="img_en" src="{% static 'images/en.png' %}" alt="円">
+           </div>
+      
+    
+    
+           
+         <footer>
+            <!--カメラボタン-->
+            <img class="camera" src="{% static 'images/camera_botan.png' %}" alt="カメラ画像" id="camera">
+            <!--保存ボタン-->
+            <img class="save" src="{% static 'images/save_botan.png' %}" alt="保存画像" id="save">
+         </footer>
+         
+        
+         </div>
+
+         <script>
+             document.addEventListener('DOMContentLoaded', function () {
+                 const menuToggle = document.getElementById('menu-toggle');
+                 const menu = document.getElementById('menu');
+
+                 menuToggle.addEventListener('click', function () {
+                     menu.classList.toggle('menu-open');
+                 });
+
+                 // 商品入力フォームの追加ボタンのクリックハンドラ
+                 const addProductButton = document.getElementById('add-product');
+                 const productList = document.getElementById('product-list');
+
+                 addProductButton.addEventListener('click', function () {
+                     const newProductEntry = document.createElement('div');
+                     newProductEntry.className = 'product-entry';
+
+                     newProductEntry.innerHTML = `
+                     <div class="container">
+                         <div class="goodsname">
+                            商品名
+                        </div>
+                        <div class="syoukeimoji">
+                            小計
+                        </div>
+                         <input type="text" name="name" class="item1">
+                         <div class="input-with-unit2">
+                             <input type="number" name="quantity" class="item2">
+                             <span class="unit2">個</span>
+                         </div>
+                         <div class="input-with-unit3">
+                             <input type="number" name="price" class="item3">
+                             <span class="unit3">円</span>
+                         </div>
+                         <div class="input-with-unit4">
+                             <p class="item4">
+                                 <span class="product-total">0</span>
+                             </p>
+                         </div>
+                          <div class="input-with-unit5">
+                        <img class="waribiki" src="{% static 'images/waribiki.png' %}" alt="割引" id="price_off">
+                    </div>
+                         <button type="button" class="remove-product">－</button>
+                     </div>
+                     
+                     `;
+
+                     // 新しいフォームを直前のフォームの後に追加
+                     const lastProductEntry = productList.lastElementChild;
+                     productList.insertBefore(newProductEntry, lastProductEntry.nextSibling);
+
+                     // 新しいフォームを追加した後にイベントリスナーを設定
+                     const newProductTotal = newProductEntry.querySelector('.product-total');
+                     newProductEntry.querySelectorAll('.item1, .item2, .item3').forEach(input => {
+                         input.addEventListener('input', () => calculateTotal());
+                     });
+                     newProductEntry.querySelector('.remove-product').addEventListener('click', function () {
+                         newProductEntry.remove();
+                         calculateTotal();
+                     });
+                 });
+
+                 // フォームの変更時に合計金額を計算
+                 function calculateTotal() {
+                     const productEntries = document.querySelectorAll('.product-entry');
+                     let grandTotal = 0;
+
+                     productEntries.forEach(entry => {
+                         const quantity = parseInt(entry.querySelector('.item2').value) || 0;
+                         const price = parseInt(entry.querySelector('.item3').value) || 0;
+                         const subtotal = quantity * price;
+                         grandTotal += subtotal;
+                         entry.querySelector('.product-total').textContent = subtotal.toFixed(2);
+                     });
+
+                     // 合計金額を更新
+                     document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
+                 }
+
+                 // 初期フォームのイベントリスナー設定
+                 const initialFormInputs = document.querySelectorAll('.item1, .item2, .item3');
+                 initialFormInputs.forEach(input => {
+                     input.addEventListener('input', () => calculateTotal());
+                 });
+
+                 // 初期計算
+                 calculateTotal();
+             });
+         </script>
+        </body>
+    </html>
+
+
